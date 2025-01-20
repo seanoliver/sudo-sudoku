@@ -1,5 +1,5 @@
-import { Board } from "./SudokuSolver";
-
+import { Board } from './SudokuSolver';
+import shuffle from 'lodash/shuffle';
 
 export class BoardGenerator {
   private board: Board;
@@ -10,10 +10,13 @@ export class BoardGenerator {
   }
 
   private fillBox(row: number, col: number, num: number): boolean {
-    for (let row = 0; row < 3; row++) {
-      for (let col = 0; col < 3; col++) {
-        
+    const shuffledNums = shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    for (let r = 0; r < 3; r++) {
+      for (let c = 0; c < 3; c++) {
+        this.board[row + r][col + c] = shuffledNums.pop()!;
       }
     }
+
+    return true;
   }
 }
