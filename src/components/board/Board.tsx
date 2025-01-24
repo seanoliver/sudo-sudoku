@@ -26,6 +26,7 @@ export const Board = () => {
                   value={cell}
                   colIndex={colIndex}
                   rowIndex={rowIndex}
+                  isPreFilled={cell !== 0}
                 />
               ))}
             </div>

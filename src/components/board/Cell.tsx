@@ -24,8 +24,16 @@ export const Cell = ({
   isPreFilled,
   isValid,
   isFocused,
+  onChange,
 }: CellProps) => {
   const onKeyDown = useKeyboardNavigation(rowIndex, colIndex)
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value ? parseInt(e.target.value.slice(-1)) : 0
+    if (onChange && !isPreFilled && newValue >= 0 && newValue <= 9) {
+      onChange(newValue)
+    }
+  }
 
   const getCellStyles = ({
     isPreFilled,
@@ -34,7 +42,7 @@ export const Cell = ({
   }: CellStyleProps) => {
     return `
       ${isPreFilled ? 'bg-gray-100' : 'bg-white'}
-      ${isValid ? '' : 'border-red-500 text-red-500'}
+      ${isValid ? '' : 'border-red-500'}
       ${isFocused ? 'border-4 border-blue-500' : 'border-1 border-gray-300'}
     `
   }
@@ -58,13 +66,19 @@ export const Cell = ({
       ${getCellStyles({ isPreFilled, isValid, isFocused })}
     `}
     >
-      <div
-        key={colIndex}
-        tabIndex={0}
+      <input
+        type="text"
+        inputMode="numeric"
+        pattern="[0-9]*"
+        value={value || ''}
+        onChange={handleChange}
+        disabled={isPreFilled}
         data-position={`${rowIndex},${colIndex}`}
         onKeyDown={onKeyDown}
         className={`
           w-12 h-12
+          text-center
+          bg-transparent
           flex items-center justify-center
           text-xl font-medium
           focus:outline-none
@@ -73,10 +87,12 @@ export const Cell = ({
           focus:z-10
           focus:ring-blue-500
           rounded-md
+          disabled:bg-transparent
+          [appearance:textfield]
+          [&::-webkit-outer-spin-button]:appearance-none
+          [&::-webkit-inner-spin-button]:appearance-none
         `}
-      >
-        {value || ''}
-      </div>
+      />
     </div>
   )
 }
