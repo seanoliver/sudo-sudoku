@@ -21,20 +21,12 @@ export const Board = () => {
           {board.map((row, rowIndex) => (
             <div key={rowIndex} className="flex">
               {row.map((cell, colIndex) => (
-                <div
-                  key={colIndex}
-                  className={`
-                    w-12 h-12
-                    flex items-center justify-center
-                    text-xl font-medium
-                    ${colIndex === 0 ? '' : 'border-l'}
-                    ${colIndex % 3 === 0 && colIndex !== 0 ? 'border-l-2 border-l-gray-800' : 'border-l-1 border-l-gray-300'}
-                    ${rowIndex === 0 ? '' : 'border-t'} 
-                    ${rowIndex % 3 === 0 && rowIndex !== 0 ? 'border-t-2 border-t-gray-800' : 'border-t-1 border-t-gray-300'}
-                  `}
-                >
-                  <Cell value={cell} />
-                </div>
+                <Cell
+                  key={`${rowIndex}-${colIndex}`}
+                  value={cell}
+                  colIndex={colIndex}
+                  rowIndex={rowIndex}
+                />
               ))}
             </div>
           ))}
