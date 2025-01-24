@@ -2,8 +2,9 @@
 
 import { useNewBoard } from '@/utils/hooks/useNewBoard'
 import { useEffect } from 'react'
+import { Cell } from './Cell'
 
-export const SudokuBoard = () => {
+export const Board = () => {
   const { board, generateNewBoard } = useNewBoard()
 
   useEffect(() => {
@@ -27,13 +28,12 @@ export const SudokuBoard = () => {
                     flex items-center justify-center
                     text-xl font-medium
                     ${colIndex === 0 ? '' : 'border-l'}
-                    ${colIndex % 3 === 0 ? 'border-l-2 border-l-gray-800' : 'border-l-gray-300'}
+                    ${colIndex % 3 === 0 && colIndex !== 0 ? 'border-l-2 border-l-gray-800' : 'border-l-1 border-l-gray-300'}
                     ${rowIndex === 0 ? '' : 'border-t'} 
-                    ${rowIndex % 3 === 0 ? 'border-t-2 border-t-gray-800' : 'border-t-gray-300'}
-                    ${cell ? 'bg-white' : 'bg-gray-50'}
+                    ${rowIndex % 3 === 0 && rowIndex !== 0 ? 'border-t-2 border-t-gray-800' : 'border-t-1 border-t-gray-300'}
                   `}
                 >
-                  {cell || ''}
+                  <Cell value={cell} />
                 </div>
               ))}
             </div>
@@ -44,4 +44,4 @@ export const SudokuBoard = () => {
   )
 }
 
-export default SudokuBoard
+export default Board

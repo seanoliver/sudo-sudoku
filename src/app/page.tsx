@@ -1,5 +1,5 @@
-import { SudokuBoard } from '@/components/board/SudokuBoard'
+import { Board } from '@/components/board/Board'
 
 export default function Home() {
-  return <SudokuBoard />
+  return <Board />
 }
