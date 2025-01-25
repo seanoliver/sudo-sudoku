@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Board, Sudoku } from '../Sudoku'
+import { Sudoku } from '../Sudoku'
+import { Board } from '../types'
 
 export const useNewBoard = () => {
   const [board, setBoard] = useState<Board>([])

@@ -23,10 +23,12 @@ export const Board = () => {
               {row.map((cell, colIndex) => (
                 <Cell
                   key={`${rowIndex}-${colIndex}`}
-                  value={cell}
+                  value={cell.value}
                   colIndex={colIndex}
                   rowIndex={rowIndex}
-                  isPreFilled={cell !== 0}
+                  isPreFilled={cell.isPreFilled}
+                  isValid={cell.isValid}
+                  isFocused={cell.isFocused}
                 />
               ))}
             </div>

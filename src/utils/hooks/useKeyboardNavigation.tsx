@@ -1,5 +1,7 @@
 import { useCallback } from 'react'
 
+// TODO: Handle keyboard navigation when navigating to a filled cell
+
 export const useKeyboardNavigation = (rowIndex: number, colIndex: number) => {
   return useCallback(
     (e: React.KeyboardEvent<HTMLDivElement>) => {

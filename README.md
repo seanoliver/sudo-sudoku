@@ -1,6 +1,6 @@
 # Sudo Sudoku
 
-A modern, interactive Sudoku game built with Next.js. Experience the classic number puzzle game with a clean, intuitive interface and helpful features to enhance your solving experience.
+A modern, keyboard-first game of Sudoku built with Next.js.
 
 ## Installation
 
